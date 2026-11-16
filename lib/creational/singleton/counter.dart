@@ -1,11 +1,20 @@
+
+//!  في Dart، تهيئة متغيرات static تكون Lazy افتراضيًا أيضًا
+
 class Counter {
   // Private constructor
   Counter._();
-  // Sengleton instance
-  static final Counter _instance = Counter._();
-  // Factory constructor => to make it easy
+  //? =============== الطريقه الاولى انشاء النسخه مباشرة =============
+  // static final Counter _instance = Counter._();
+  // factory Counter() {
+  //   return _instance;
+  // }
+
+  //? ================ الطريقه الثانيه انشاء نسخه lazy sengleton ==============
+
+  static Counter? _instance;
   factory Counter() {
-    return _instance;
+    return _instance ??= Counter._();
   }
 
   int count = 0;
